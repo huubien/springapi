@@ -1,0 +1,125 @@
+﻿<h1>Api Interface specification</h1>
+<h2>Common</h2>
+<ul>
+<li>
+Encoding
+<ul>
+<li>UTF-8</li>
+</ul>
+</li>
+<li>
+Protocal
+<ul>
+<li>HTTPS</li>
+</ul>
+</li>
+</ul>
+<h2>Get Children API</h2>
+<ul>
+<li>Get children list.</li>
+</ul>
+<h3>Request</h3>
+<ul>
+<li>
+URI
+<ul>
+<li>/person/children</li>
+</ul>
+</li>
+<li>
+Method
+<ul>
+<li>GET</li>
+</ul>
+</li>
+</ul>
+<h4>Header</h4>
+<ul>
+<li>
+Content-type
+<ul>
+<li>application/json</li>
+</ul>
+</li>
+</ul>
+<h4>Request</h4>
+<table>
+<thead>
+<tr>
+	<th align="left">Parameter name</th>
+	<th align="left">Sample</th>
+	<th align="left">Type</th>
+	<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">sex</td>
+	<td align="left">male</td>
+	<td align="left">string</td>
+	<td align="left">Sex(male, female)</td>
+</tr>
+</tbody>
+</table>
+<h4>Sample URL</h4>
+<p><code>/person/children?sex=male</code></p>
+<h3>Response</h3>
+<h4>Header</h4>
+<ul>
+<li>
+Content-Type
+<ul>
+<li>application/json</li>
+</ul>
+</li>
+<li>
+HTTP status
+<ul>
+<li>200</li>
+</ul>
+</li>
+</ul>
+<h4>Response Body</h4>
+<table>
+<thead>
+<tr>
+	<th align="left">Key</th>
+	<th align="left">Value</th>
+	<th align="left">Type</th>
+	<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td align="left">name</td>
+	<td align="left">Nguyen Van A</td>
+	<td align="left">string</td>
+	<td align="left">Full name</td>
+</tr>
+<tr>
+	<td align="left">age</td>
+	<td align="left">8</td>
+	<td align="left">number</td>
+	<td align="left">Age</td>
+</tr>
+<tr>
+	<td align="left">address</td>
+	<td align="left">10 Pho Quang, Phuong 2, Tan Binh</td>
+	<td align="left">string</td>
+	<td align="left">Address</td>
+</tr>
+</tbody>
+</table>
+<h5>Sample Response</h5>
+<p><code>[
+  {
+    &quot;name&quot;:&quot;Nguyen Van A&quot;,
+    &quot;age&quot;:8,
+    &quot;address&quot;:&quot;10 Pho Quang - Phuong 2 - Quan Tan Binh&quot;
+  },
+  {
+    &quot;name&quot;:&quot;Nguyen Van B&quot;,
+    &quot;age&quot;:9,
+    &quot;address&quot;:&quot;45/76 Cao Lo - Phuong 4 - Quan 8&quot;
+  }
+]</code></p>

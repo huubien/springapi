@@ -1,0 +1,105 @@
+@startuml
+
+title PersonAPI
+
+/' パッケージ及びクラス定義 '/
+package "vn.fujinet.sample" {
+
+  package "presentation.controller" {
+    package "controller" {
+      class PersonController {
+        +getChildren():Result
+        +getAdult():Result
+      }
+    }
+
+    package "dto" {
+      class dto.Person {
+        name
+        age
+        address
+      }
+    }
+  }
+
+  package "application.service" {
+    class PersonService {
+      +getChildren():dto.Person
+      +getAdult():dto.Person
+    }
+  }
+
+  package "domain.model" {
+    package "converter" {
+      class PersonConverter {
+        +{static}convert(PersonEntity):domain.model.Person
+        +{static}convert(domain.model.Person):dto.Person
+      }
+    }
+
+    class domain.model.Person {
+      firstName
+      lastName
+      dateOfBirth
+      address
+      +getAddress():string
+      +getFullname():string
+      +calculateAge():int
+    }
+
+    class PersonList {
+      -persons
+      +addAll(persons)
+      +getChildren():List of Person
+      +getAdult():List of Person
+    }
+  }
+
+  package "infrastructure" {
+    package "repository" {
+      class PersonRepository {
+        +selectAll():PersonList
+      }
+    }
+
+    package "dao" {
+      class EachDao {
+      }
+    }
+
+    package "entity" {
+      class EachEntity {
+      }
+    }
+  }
+}
+
+/' Controller '/
+PersonController .. PersonService
+
+/' Converter '/
+PersonConverter .. domain.model.Person
+PersonConverter .. dto.Person
+PersonConverter .. EachEntity
+
+/' Service '/
+PersonService .. PersonRepository
+PersonService .. dto.Person
+PersonService .. PersonList
+PersonService .. PersonConverter
+
+/' Repository '/
+PersonRepository .. PersonConverter
+PersonRepository .. PersonList
+PersonRepository .. EachEntity
+PersonRepository .. EachDao
+
+/' Domain '/
+PersonList .. domain.model.Person
+
+/' Dto '/
+
+/' Dao '/
+EachDao .. EachEntity
+
+@enduml
